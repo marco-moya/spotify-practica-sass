@@ -1,0 +1,1081 @@
+@import "reset";
+@import "mixins";
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  width: 100%;
+  height: 88vh;
+  padding: 0.7rem;
+  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 55% 1fr;
+  grid-template-areas: "nav main aside";
+  gap: 1rem;
+  color: $color-text-primary;
+  background-color: $background-secondary;
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main";
+    padding: 0;
+  }
+  @include tablet {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "nav main";
+
+  }
+  nav {
+    min-height: 80vh;
+    grid-area: nav;
+    background-color: $background-secondary;
+    border-radius: 10px;
+    @include flex-center(column, start, start);
+    gap: 1rem;
+    @include mobile {
+      display: none;
+    }
+  }
+  main {
+    grid-area: main;
+    background-color: $background-primary;
+    border-radius: 10px;
+  }
+  aside {
+    grid-area: aside;
+    background-color: $background-primary;
+    padding: 1rem;
+    border-radius: 10px;
+    @include mobile {
+      display: none;
+    }
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+main, aside {
+  min-height: 80vh; /* Ajusta el alto máximo al 100% del alto de la ventana del navegador */
+  overflow-y: auto; /* Muestra una barra de desplazamiento vertical si el contenido desborda */
+}
+
+.home {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  background-color: $background-primary;
+  @include flex-center(column, center, start);
+  gap: 2rem;
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  > div {
+    width: 100%;
+    @include flex-center(row, start, center);
+    gap: 2rem;
+  }
+  img {
+    width: 25px;
+    height: 25px;
+  }
+  p {
+    font-size: $step-1;
+    font-weight: 600;
+    color: $color-text-secondary;
+    &:hover {
+      @media (hover: hover){
+        cursor: pointer;
+        color: $color-text-primary;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.library {
+  width: 100%;
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: $background-primary;
+  border-radius: 10px;
+  &__buttons {
+    width: 100%;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+    color: $color-text-secondary;
+    @include flex-center(row, start, center);
+  }
+  &__spread-out {
+    width: 50%;
+    @include flex-center(row, start, center);
+    gap: 1rem;
+  }
+  &__library-icon {
+    width: 30px;
+    height: 30px;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+  }
+  &__title {
+    font-size: $step-1;
+    font-weight: 600;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        color: $color-text-primary;
+      }
+    }
+  }
+  &__edit {
+    width: 50%;
+    @include flex-center(row, end, center);
+    gap: 1rem;
+  }
+  &__plus,
+  &__arrow {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    @include flex-center(row, center, center);
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background-color: #2b2b2b;
+      }
+    }
+    &-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &__filter {
+    width: 100%;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+    @include flex-center(row, start, center);
+    gap: 1rem;
+  }
+  &__close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2b2b2b;
+    @include flex-center(row, center, center);
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background-color: $color-secondary-hover;
+      }
+    }
+    &-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  &__artist-filter {
+    width: 90px;
+    height: 40px;
+    font-size: $step-0;
+    color: black;
+    background-color: aliceblue;
+    border-radius: 20px;
+    @include flex-center(row, center, center);
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  &__list {
+    width: 100%;
+    max-height: 54vh;
+    overflow-y: auto;
+    &-buttons {
+      width: 100%;
+      padding: 0 0.5rem;
+      margin-bottom: 1rem;
+      @include flex-center(row, space-between, center);
+    }
+    &-quest {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      @include flex-center(row, center, center);
+      @media (hover: hover) {
+        &:hover {
+          cursor: pointer;
+          background-color: #2b2b2b;
+        }
+      }
+      &-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &-filter {
+      @include flex-center(row, center, center);
+      gap: 0.5rem;
+      font-weight: 600;
+      color: $color-text-secondary;
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+          color: $color-text-primary;
+          transform: scale(1.05);
+        }
+      }
+      &-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &-artist{
+      width: 100%;
+      padding: 0.5rem;
+      @include flex-center(row, start, center);
+      gap: 1rem;
+      border-radius: 10px;
+      @media (hover: hover) {
+        &:hover {
+          cursor: pointer;
+          background-color: #212121;
+        }
+      }
+    }
+    &-cover {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    &-name {
+      font-size: $step-1;
+    }
+  }
+}
+
+.artist {
+  width: 100%;
+  height: 18vw;
+  min-height: 220px;
+  padding: 0 2rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/rammstein-hero.jpg");
+  background-size: cover;
+  @include flex-center(column, space-between, start);
+  @include mobile {
+    padding: 0 0.7rem;
+    background-position: center center;
+  }
+  &__nav{
+    width: 100%;
+    margin-top: 1rem;
+    @include flex-center(row, space-between, center);
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    &-arrows {
+      @include flex-center(row, center, center);
+      gap: 1rem;
+      > div {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(19, 19, 19, 0.5);
+        @include flex-center(row, center, center);
+        &:hover {
+          @media (hover: hover) {
+            cursor: pointer;
+          }
+        }
+      }
+      >:first-child {
+        transform: scale(-1);
+      }
+    }
+    &-messages {
+      padding-right: 1rem;
+      @include flex-center(row, center, center);
+      gap: 1rem;
+      > div {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(19, 19, 19, 0.5);
+        @include flex-center(row, center, center);
+        &:hover {
+          @media (hover: hover) {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+  &__band {
+    @include flex-center(column, center, start);
+    &-verify {
+      @include flex-center(row, center, center);
+      gap: 1rem;
+    }
+    &-icon {
+      width: 30px;
+      height: 30px;
+    }
+    &-name {
+      font-size: calc($step-5 * 2);
+      font-weight: 900;
+      @include mobile {
+        font-size: $step-5;
+      }
+    }
+    &-listeners {
+      margin: 1rem 0;
+      font-size: $step-1;
+      font-weight: 600;
+    }
+  }
+}
+
+.action-buttons {
+  width: 100%;
+  padding: 1.5rem;
+  @include flex-center(row, start, center);
+  gap: 2rem;
+  @include mobile {
+   gap: 1rem;
+   padding: 0.7rem;
+  }
+  &__play {
+    width: 75px;
+    height: 75px;
+    background: $color-primary;
+    border-radius: 50%;
+    @include flex-center(row, center, center);
+    @include mobile {
+      width: 40px;
+      height: 40px;
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.05);
+        background-color: $color-primary-hover;
+      }
+    }
+    &-icon {
+      width: 25px;
+      height: 25px;
+      margin-left: 5px;
+      @include mobile {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+  &__follow {
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid $color-text-secondary;
+    @include flex-center(row, center, center);
+    font-weight: 600;
+    font-size: $step-0;
+    @include mobile {
+      width: 80px;
+      height: 30px;
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.05);
+        border: 1.5px solid $color-text-primary;
+      }
+    }
+  }
+  &__more {
+    width: 50px;
+    height: 40px;
+    @include flex-center(row, start, center);
+    font-size: 2.5rem;
+    color: $color-text-secondary;
+    @include mobile {
+      transform: rotate(90deg);
+      @include flex-center(row, center, center);
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.05);
+        color: $color-text-primary;
+      }
+    }
+  }
+}
+.popular {
+  width: 100%;
+  padding: 1rem 2rem;
+  &__title {
+    margin-bottom: 1rem;
+    font-size: $step-3;
+    font-weight: 900;
+  }
+  @include mobile {
+    padding: 0.6rem;
+    font-size: $step-2;
+  }
+  &__container {
+    padding: 0.6rem 1.5rem;
+    @include flex-center(row, space-between, center);
+    border-radius: 6px;
+    @include mobile {
+      padding: 0.6rem;
+    }
+    &:hover {
+      @media (hover: hover) {
+        background-color: $color-secondary-hover;
+        & .popular__play {
+          display: block;
+        }
+        & .popular__number {
+          display: none;
+        }
+        & .popular__played {
+          color: $color-text-primary;
+        }
+        & .popular__add {
+          opacity: 1;
+        }
+        & .popular__dots {
+          color: $color-text-primary;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__info-song {
+    width: 60%;
+    @include flex-center(row, start, center);
+    gap: 1rem;
+  }
+  &__number{
+    width: 20px;
+    font-size: $step-1;
+    color: $color-text-secondary;
+  }
+  &__equalizer {
+    @extend.popular__number;
+    &-icon {
+      width: 20px;
+      height: 25px;
+      @include mobile {
+        width: 15px;
+        height: 20px;
+      }
+    }
+  }
+  &__play {
+    width: 20px;
+    height: 15px;
+    display: none;
+    &-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  &__pause {
+    @extend.popular__play;
+    &-icon {
+      @extend.popular__play-icon;
+    }
+  }
+  &__cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    @include mobile {
+      width: 40px;
+      height: 40px;
+      overflow: visible;
+    }
+  }
+  &__song {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+    @include mobile {
+      font-size: $step-1;
+      font-weight: normal;
+    }
+    &--play {
+      color: $color-primary;
+    }
+  }
+  &__info-data {
+    width: 40%;
+    display: grid;
+    grid-template-columns: 60% 10% 20% 10%;
+    align-items: center;
+    color: $color-text-secondary;
+    font-size: $step-1;
+    @include mobile {
+      @include flex-center(row, end, center);
+    }
+  }
+  &__played {
+    @include mobile {
+      display: none;
+    }
+  }
+  &__add {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__time {
+    text-align: center;
+    @include mobile {
+      display: none;
+    }
+  }
+  &__dots {
+    font-size: $step-3;
+    opacity: 0;
+    @include mobile {
+      opacity: 1;
+      transform: rotate(90deg);
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+.discography {
+  width: 100%;
+  padding: 2rem;
+  @include flex-center(column, center, start);
+  @include mobile {
+    padding: 1rem;
+  }
+  &__title {
+    margin: 2rem 0;
+    font-size: $step-3;
+    font-weight: 900;
+    @include mobile {
+      margin: 0 0 1rem 0;
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  &__album {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    @include flex-center(column, center, start);
+    gap: 0.6rem;
+    @include mobile {
+      padding: 0;
+      @include flex-center(row, start, center);
+    }
+    @include tablet {
+      padding: 0;
+      @include flex-center(column, center, center);
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        background-color: #212121;
+      }
+      & .discography__play {
+        opacity: 1;
+        transform: translate(0, -0.5rem);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+    }
+  }
+  &__cover {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    align-self: center;
+    @include mobile {
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+    }
+  }
+  &__play {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    right: 2rem;
+    bottom: 5.5rem;
+    border-radius: 50%;
+    background-color: $color-primary;
+    box-shadow: 0 10px 8px 3px rgba(0, 0, 0, 0.2);
+    @include flex-center(row, center, center);
+    opacity: 0;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        background-color: rgb(32, 229, 101);
+        transform: scale(1.05);
+      }  
+    }
+    &-icon {
+      width: 23px;
+      height: 23px;
+      margin-left: 5px;
+    }
+  }
+  &__info {
+    @include mobile {
+      @include flex-center(column, center, start);
+      gap: 0.5rem;
+    }
+  }
+  &__name {
+    font-size: $step-1;
+    font-weight: 900;
+    @include tablet {
+      text-align: center;
+    }
+  }
+  &__date {
+    font-size: $step-1;
+    font-weight: 600;
+    color: $color-text-secondary;
+  }
+}
+
+.playlist {
+  width: 100%;
+  &__header {
+    width: 100%;
+    @include flex-center(row, space-between, center);
+    gap: 1rem;
+  }
+  &__title, &__dots {
+    font-size: $step-3;
+    font-weight: 900;
+  }
+  &__title {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__actions {
+    @include flex-center(row, start, center);
+    gap: 1rem;
+  }
+  &__dots {
+    color: $color-text-secondary;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        color: $color-text-primary;
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @include flex-center(row, center, center);
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        background-color: $color-secondary-hover;
+      }
+    }
+  }
+  &__close-icon {
+    width: 15px;
+    height: 15px;
+  }
+  &__cover {
+    margin: 1rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+  }
+  &__track {
+    width: 100%;
+    @include flex-center(row, space-between, center);
+  }
+  &__track-title, &__artist {
+    font-size: $step-3;
+    font-weight: 600;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__artist {
+    font-size: $step-1;
+    color: $color-text-secondary;
+    &:hover {
+      @media (hover: hover) {
+        color: $color-text-primary;
+      }
+    }
+  }
+  &__like {
+    width: 40px;
+    height: 40px;
+    @include flex-center(row, center, center);
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__like-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.artist-info {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  &__header {
+    width: 100%;
+    height: 13vw;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0)), url("../img/rammstein-info.jpg");
+    background-size: 450px 250px;
+    background-position: -55px 0 ;
+    background-repeat: no-repeat;
+  }
+  &__title {
+    padding: 2rem 1.5rem;
+    font-size: $step-1;
+    font-weight: 900;
+  }
+  &__details {
+    width: 100%;
+    padding: 1.4rem;
+    background-color: $color-secondary;
+  }
+  &__name {
+    margin-bottom: 1rem;
+    font-size: $step-1;
+    font-weight: 900;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__listeners {
+    margin-bottom: 0.7rem;
+    font-size: $step-1;
+    color: $color-text-secondary;
+  }
+  &__follow {
+    width: 150px;
+    height: 40px;
+    margin-bottom: 1rem;
+    border-radius: 20px;
+    border: 1px solid $color-text-secondary;
+    @include flex-center(row, center, center);
+    font-weight: 900;
+    font-size: 16px;
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+        transform: scale(1.05);
+        border: 1.7px solid $color-text-primary;
+      }
+    }
+  }
+  &__description {
+    font-size: $step-1;
+    line-height: 1.5rem;
+    color: $color-text-secondary;
+  }
+}
+
+.player {
+  width: 100%;
+  height: 12vh;
+  background-color: $background-secondary;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  @include tablet {
+    grid-template-columns: 24% 38% 38%;
+  }
+  &__track {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    @include flex-center(row, start, center);
+    gap: 1.5rem;
+    @include mobile {
+      padding: 0.5rem;
+      gap: 1rem;
+    }
+    @include tablet {
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+    &-cover {
+      width: 70px;
+      border-radius: 10px;
+      overflow: hidden;
+      @include mobile {
+        width: 40px;
+        border-radius: 5px;
+      }
+    }
+    &-data {
+      color: $color-text-primary;
+    }
+    &-title {
+      font-size: $step-1;
+      font-weight: 600;
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+    &-artist {
+      font-size: $step-0;
+      font-weight: 600;
+      color: $color-text-secondary;
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+          text-decoration: underline;
+          color: $color-text-primary;
+        }
+      }
+    }
+    &-like {
+      width: 20px;
+      height: 20px;
+      @include flex-center(row, center, center);
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+          transform: scale(1.1);
+        }
+      }
+    }
+    &-play {
+      position:absolute;
+      right: 1.5rem;
+      width: 20px;
+      height: 20px;
+      display: none;
+      @include mobile {
+        display: block;
+      }
+    }
+  }
+  &__timeline {
+    width: 100%;
+    padding: 0 1rem;
+    @include flex-center(column, center, center);
+    gap: 0.5rem;
+    @include mobile {
+      display: none;
+    }
+    &-buttons {
+      width: 100%;
+      padding: 0 1rem;
+      @include flex-center(row, center, center);
+      gap: 2rem;
+      @include tablet {
+        gap: 1rem;
+        padding: 0 0.5rem;
+      }
+    }
+    &-shuffle {
+      width: 25px;
+      height: 25px;
+      @include flex-center(row, center, center);
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+        }
+      }
+    }
+    &-back {
+      width: 20px;
+      height: 20px;
+      @include flex-center(row, center, center);
+      transform: scale(-1);
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+        }
+      }
+    }
+    &-play {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $color-primary;
+      @include flex-center(row, center, center);
+      background-color: $color-text-primary;
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+      }
+      &-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &-next {
+      width: 20px;
+      height: 20px;
+      @include flex-center(row, center, center);
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+        }
+      }
+    }
+    &-repeat {
+      width: 25px;
+      height: 25px;
+      @include flex-center(row, center, center);
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+        }
+      }
+    }
+    &-time {
+      width: 100%;
+      @include flex-center(row, center, center);
+      gap: 0.5rem;
+    }
+    &-start,
+    &-end {
+      font-size: $step-0;
+      color: $color-text-secondary;
+    }
+    &-bar {
+      width: 100%;
+      height: 5px;
+      background-color: $color-text-secondary;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    &-progress {
+      width: 30%;
+      height: 100%;
+      background-color: $color-text-primary;
+    }
+  }
+  &__action {
+    width: 100%;
+    padding: 1rem;
+    @include flex-center(row, end, center);
+    gap: 1.2rem;
+    @include mobile {
+      display: none;
+    }
+    @include tablet {
+      gap: 0.5rem;
+    }
+    &-view {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      @include flex-center(row, center, center);
+      &:hover {
+        @media (hover: hover) {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+      }
+    }
+    &-letter,
+    &-list,
+    &-devices,
+    &-volume,
+    &-miniplayer,
+    &-fullscreen {
+      @extend.player__action-view;
+    }
+    &-bar {
+      width: 100px;
+      height: 5px;
+      background-color: $color-text-secondary;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    &-progress {
+      width: 60%;
+      height: 100%;
+      background-color: $color-text-primary;
+    }
+  }
+}
